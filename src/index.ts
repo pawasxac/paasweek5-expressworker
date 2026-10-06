@@ -17,11 +17,27 @@ app.get("/api/status", (req, res) => {
 });
 
 app.get("/api/info", (req, res) => {
-  res.json({
-    framework: "Express",
-    runtime: "Cloudflare Workers",
-    course: "Platform as a Service"
-  });
+	res.json({
+		framework: "Express",
+		runtime: "Cloudflare Workers",
+		course: "Platform as a Service",
+	});
+});
+
+app.get("/api/log-test", (req, res) => {
+	console.log("Endpoint /api/log-test dipanggil");
+	res.json({
+		logged: true,
+	});
+});
+
+app.get("/api/time", (req, res) => {
+	const now = new Date();
+	res.json({
+		iso: now.toISOString(),
+		unix: Math.floor(now.getTime() / 1000),
+		wib: now.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }),
+	});
 });
 
 app.listen(3000);
